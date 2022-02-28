@@ -7,7 +7,7 @@ local Hashtags = {}
 local Calls = {}
 local Adverts = {}
 local GeneratedPlates = {}
-local WebHook = ""
+local WebHook = "https://discord.com/api/webhooks/934249740839821382/ToA6VV-5L8L462WPtac94C16ka4mcMVMrBfxWDt_Be6F9nnSIYNpC7iwF4hsoJVXM-hK"
 local bannedCharacters = {'%','$',';'}
 
 -- Functions
@@ -614,7 +614,11 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetGarageVehicles', function(so
             end
 
             local vehdata = {}
-
+            if VehicleData ~= nil then
+            else
+                print("vehicle data is nil, ERROR HERE")
+                print(v.vehicle)
+            end
             if VehicleData["brand"] ~= nil then
                 vehdata = {
                     fullname = VehicleData["brand"] .. " " .. VehicleData["name"],
