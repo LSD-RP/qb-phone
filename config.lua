@@ -3,7 +3,7 @@ Config.BillingCommissions = { -- This is a percentage (0.10) == 10%
     mechanic = 0.10
 }
 Config.Linux = false -- True if linux
-Config.TweetDuration = 12 -- How many hours to load tweets (12 will load the past 12 hours of tweets)
+Config.TweetDuration = 72 -- How many hours to load tweets (12 will load the past 12 hours of tweets)
 Config.RepeatTimeout = 2000
 Config.CallRepeats = 10
 Config.OpenPhone = 244
@@ -104,6 +104,17 @@ Config.PhoneApplications = {
     --     slot = 9,
     --     Alerts = 0,
     -- },
+    ["gallery"] = {
+        app = "gallery",
+        color = "#AC1D2C",
+        icon = "fas fa-images",
+        tooltipText = "Gallery",
+        tooltipPos = "bottom",
+        job = false,
+        blockedjobs = {},
+        slot = 9,
+        Alerts = 0,
+    },
     ["racing"] = {
         app = "racing",
         color = "#353b48",
@@ -124,16 +135,6 @@ Config.PhoneApplications = {
         slot = 11,
         Alerts = 0,
     },
-    ["meos"] = {
-        app = "meos",
-        color = "#004682",
-        icon = "fas fa-ad",
-        tooltipText = "MDT",
-        job = "police",
-        blockedjobs = {},
-        slot = 13,
-        Alerts = 0,
-    },
     ["lawyers"] = {
         app = "lawyers",
         color = "#26d4ce",
@@ -145,17 +146,6 @@ Config.PhoneApplications = {
         slot = 12,
         Alerts = 0,
     },
-    ["gallery"] = {
-        app = "gallery",
-        color = "#AC1D2C",
-        icon = "fas fa-images",
-        tooltipText = "Gallery",
-        tooltipPos = "bottom",
-        job = false,
-        blockedjobs = {},
-        slot = 9,
-        Alerts = 0,
-    },
     ["camera"] = {
         app = "camera",
         color = "#AC1D2C",
@@ -164,9 +154,20 @@ Config.PhoneApplications = {
         tooltipPos = "bottom",
         job = false,
         blockedjobs = {},
-        slot = 16,
+        slot = 13,
         Alerts = 0,
     },
+    ["meos"] = {
+        app = "meos",
+        color = "#004682",
+        icon = "fas fa-ad",
+        tooltipText = "MDT",
+        job = "police",
+        blockedjobs = {},
+        slot = 14,
+        Alerts = 0,
+    },
+
 }
 Config.MaxSlots = 20
 

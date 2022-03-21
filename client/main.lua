@@ -175,7 +175,6 @@ local function LoadPhone()
         PhoneData.PlayerData = QBCore.Functions.GetPlayerData()
         local PhoneMeta = PhoneData.PlayerData.metadata["phone"]
         PhoneData.MetaData = PhoneMeta
-
         if pData.InstalledApps ~= nil and next(pData.InstalledApps) ~= nil then
             for k, v in pairs(pData.InstalledApps) do
                 local AppData = Config.StoreApps[v.app]
@@ -298,7 +297,8 @@ local function OpenPhone()
                 newPhoneProp()
             end)
 
-            QBCore.Functions.TriggerCallback('qb-garage:server:GetPlayerVehicles', function(vehicles)
+            -- QBCore.Functions.TriggerCallback('qb-garage:server:GetPlayerVehicles', function(vehicles)
+            QBCore.Functions.TriggerCallback('qb-phone:server:GetGarageVehicles', function(vehicles)
                 PhoneData.GarageVehicles = vehicles
             end)
         else
@@ -789,7 +789,7 @@ end)
 
 RegisterNUICallback('InstallApplication', function(data, cb)
     local ApplicationData = Config.StoreApps[data.app]
-    local NewSlot = GetFirstAvailableSlot()
+    local NewSlot = 16
 
     if not CanDownloadApps then
         return
