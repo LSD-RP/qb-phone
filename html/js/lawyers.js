@@ -150,18 +150,18 @@ SetupLawyers = function(data) {
             $(".lawyers-list").append(element);
         }
 
-        $(".lawyers-list").append('<br><h1 style="font-size:1.641025641025641vh; padding:1.0256410256410255vh; color:#fff; margin-top:0; width:100%; display:block; background-color: rgb(219,112,147);">Vanilla Unicorn (' + unicorn.length + ')</h1>');
+        // $(".lawyers-list").append('<br><h1 style="font-size:1.641025641025641vh; padding:1.0256410256410255vh; color:#fff; margin-top:0; width:100%; display:block; background-color: rgb(219,112,147);">Vanilla Unicorn (' + unicorn.length + ')</h1>');
 
-        if (unicorn.length > 0) {
-            $.each(unicorn, function(i, lawyer8) {
-                var element = '<div class="lawyer-list" id="lawyerid8-' + i + '"> <div class="lawyer-list-firstletter" style="background-color: rgb(219,112,147);">' + (lawyer8.name).charAt(0).toUpperCase() + '</div> <div class="lawyer-list-fullname">' + lawyer8.name + '</div> <div class="lawyer-list-call"><i class="fas fa-phone"></i></div> </div>'
-                $(".lawyers-list").append(element);
-                $("#lawyerid8-" + i).data('LawyerData', lawyer8);
-            });
-        } else {
-            var element = '<div class="lawyer-list"><div class="no-lawyers">There are no Vanilla Unicorn employees available.</div></div>'
-            $(".lawyers-list").append(element);
-        }
+        // if (unicorn.length > 0) {
+        //     $.each(unicorn, function(i, lawyer8) {
+        //         var element = '<div class="lawyer-list" id="lawyerid8-' + i + '"> <div class="lawyer-list-firstletter" style="background-color: rgb(219,112,147);">' + (lawyer8.name).charAt(0).toUpperCase() + '</div> <div class="lawyer-list-fullname">' + lawyer8.name + '</div> <div class="lawyer-list-call"><i class="fas fa-phone"></i></div> </div>'
+        //         $(".lawyers-list").append(element);
+        //         $("#lawyerid8-" + i).data('LawyerData', lawyer8);
+        //     });
+        // } else {
+        //     var element = '<div class="lawyer-list"><div class="no-lawyers">There are no Vanilla Unicorn employees available.</div></div>'
+        //     $(".lawyers-list").append(element);
+        // }
 
         $(".lawyers-list").append('<br><h1 style="font-size:1.641025641025641vh; padding:1.0256410256410255vh; color:#fff; margin-top:0; width:100%; display:block; background-color: rgb(40,201,36);">Best Buds (' + bestbuds.length + ')</h1>');
 
@@ -216,10 +216,10 @@ SetupLawyers = function(data) {
         var element = '<div class="lawyer-list"><div class="no-lawyers">There are no Burger Shot employees available.</div></div>'
         $(".lawyers-list").append(element)
         
-        $(".lawyers-list").append('<br><h1 style="font-size:1.641025641025641vh; padding:1.0256410256410255vh; color:#fff; margin-top:0; width:100%; display:block; background-color: rgb(219,112,147);">Vanilla Unicorn (' + unicorn.length + ')</h1>');
+        // $(".lawyers-list").append('<br><h1 style="font-size:1.641025641025641vh; padding:1.0256410256410255vh; color:#fff; margin-top:0; width:100%; display:block; background-color: rgb(219,112,147);">Vanilla Unicorn (' + unicorn.length + ')</h1>');
 
-        var element = '<div class="lawyer-list"><div class="no-lawyers">There are no Vanilla Unicorn employees available.</div></div>'
-        $(".lawyers-list").append(element)
+        // var element = '<div class="lawyer-list"><div class="no-lawyers">There are no Vanilla Unicorn employees available.</div></div>'
+        // $(".lawyers-list").append(element)
 
         $(".lawyers-list").append('<br><h1 style="font-size:1.641025641025641vh; padding:1.0256410256410255vh; color:#fff; margin-top:0; width:100%; display:block; background-color: rgb(40,201,36);">Best Buds (' + bestbuds.length + ')</h1>');
 

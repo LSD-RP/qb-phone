@@ -1082,6 +1082,14 @@ RegisterNUICallback('TransferCid', function(data, cb)
     end, TransferedCid, data.HouseData)
 end)
 
+RegisterNUICallback('SellHouse', function(data, cb)
+    local houseData = data.HouseData
+    -- print("try to sell")
+    QBCore.Functions.TriggerCallback('qb-houses:server:sellHouse', function(success)
+        cb(success)
+    end, houseData)
+end)
+
 RegisterNUICallback('FetchPlayerHouses', function(data, cb)
     QBCore.Functions.TriggerCallback('qb-phone:server:MeosGetPlayerHouses', function(result)
         cb(result)

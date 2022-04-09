@@ -65,6 +65,21 @@ $(document).on('click', '#myhouse-option-transfer', function(e){
     }, AnimationDuration);
 });
 
+$(document).on('click', '#myhouse-option-sell', function(e){
+    e.preventDefault();
+    // console.log(JSON.stringify(CurrentHouseData, null, 2));
+    $(".myhouses-options").animate({
+        left: -35+"vw"
+    }, AnimationDuration);
+
+    $(".myhouse-option-sell-container").animate({
+        left: 0
+    }, AnimationDuration);
+
+    var sellPrice = CurrentHouseData['price'] * 0.80;
+    $("#myhouse-option-sell-price").html("$" + sellPrice)
+});
+
 $(document).on('click', '#myhouse-option-keys', function(e){
     $(".keys-container").html("");
     if (CurrentHouseData.keyholders !== undefined && CurrentHouseData.keyholders !== null) {
@@ -156,6 +171,37 @@ $(document).on('click', '#myhouse-option-transfer-confirm', function(e){
     });
 });
 
+$(document).on('click', '#myhouse-option-sell-confirm', function(e){
+    e.preventDefault();
+        
+    // var NewBSN = $(".myhouse-option-transfer-container-citizenid").val();
+
+    $.post('https://qb-phone/SellHouse', JSON.stringify({
+        HouseData: CurrentHouseData,
+    }), function(CanTransfer){
+        if (CanTransfer) {
+            // console.log("success sold")
+            $(".myhouses-options").animate({
+                left: 0
+            }, AnimationDuration);
+        
+            $(".myhouse-option-sell-container").animate({
+                left: 35+"vw"
+            }, AnimationDuration);
+
+            setTimeout(function(){
+                $.post('https://qb-phone/GetPlayerHouses', JSON.stringify({}), function(Houses){
+                    SetupPlayerHouses(Houses);
+                    $(".myhouses-options-container").fadeOut(150);
+                });
+            }, 100);
+        } else {
+            QB.Phone.Notifications.Add("fas fa-home", "Houses", "Cannot complete request", "#27ae60", 2500);
+            shakeElement(".myhouse-option-transfer-container");
+        }
+    });
+});
+
 $(document).on('click', '#myhouse-option-transfer-back', function(e){
     e.preventDefault();
 
@@ -164,6 +210,18 @@ $(document).on('click', '#myhouse-option-transfer-back', function(e){
     }, AnimationDuration);
 
     $(".myhouse-option-transfer-container").animate({
+        left: 35+"vw"
+    }, AnimationDuration);
+});
+
+$(document).on('click', '#myhouse-option-sell-back', function(e){
+    e.preventDefault();
+
+    $(".myhouses-options").animate({
+        left: 0
+    }, AnimationDuration);
+
+    $(".myhouse-option-sell-container").animate({
         left: 35+"vw"
     }, AnimationDuration);
 });
