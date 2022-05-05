@@ -157,6 +157,17 @@ Config.PhoneApplications = {
         slot = 13,
         Alerts = 0,
     },
+    ["storage"] = {
+        app = "storage",
+        color = "#ff8f1a",
+        icon = "fas fa-car",
+        tooltipText = "Store Car",
+        tooltipPos = "bottom",
+        job = false,
+        blockedjobs = {},
+        slot = 14,
+        Alerts = 0,
+    },
     ["meos"] = {
         app = "meos",
         color = "#004682",
@@ -164,7 +175,7 @@ Config.PhoneApplications = {
         tooltipText = "MDT",
         job = "police",
         blockedjobs = {},
-        slot = 14,
+        slot = 15,
         Alerts = 0,
     },
 

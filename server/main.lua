@@ -512,10 +512,10 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetGarageVehicles', function(so
             if v.garage ~= nil then
                 if Garages[v.garage] ~= nil then
                     VehicleGarage = Garages[v.garage]["label"]
-                elseif GangGarages[v.garage] ~= nil then
-                    VehicleGarage = GangGarages[v.garage]["label"]
-                elseif JobGarages[v.garage] ~= nil then
-                    VehicleGarage = JobGarages[v.garage]["label"]
+                -- elseif GangGarages[v.garage] ~= nil then
+                --     VehicleGarage = GangGarages[v.garage]["label"]
+                -- elseif JobGarages[v.garage] ~= nil then
+                --     VehicleGarage = JobGarages[v.garage]["label"]
                 end
             end
 
@@ -618,8 +618,8 @@ QBCore.Functions.CreateCallback('qb-phone:server:GetCurrentLawyers', function(so
                 Player.PlayerData.job.name == "mechanic" or Player.PlayerData.job.name == "taxi" or
                 Player.PlayerData.job.name == "police" or Player.PlayerData.job.name == "ambulance") or
                 Player.PlayerData.job.name == "cardealer" or Player.PlayerData.job.name == "burgershot" or
-                Player.PlayerData.job.name == "vu" or Player.PlayerData.job.name == "bestbuds" and
-                Player.PlayerData.job.onduty then
+                Player.PlayerData.job.name == "vu" or Player.PlayerData.job.name == "bestbuds"
+                or Player.PlayerData.job.name == "fd" or Player.PlayerData.job.name == "reporter"  then
                 Lawyers[#Lawyers+1] = {
                     name = Player.PlayerData.charinfo.firstname .. " " .. Player.PlayerData.charinfo.lastname,
                     phone = Player.PlayerData.charinfo.phone,

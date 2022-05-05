@@ -17,6 +17,7 @@ PhoneData = {
     Mails = {},
     Adverts = {},
     GarageVehicles = {},
+    Garages = {},
     AnimationData = {
         lib = nil,
         anim = nil,
@@ -145,6 +146,47 @@ local function findVehFromPlateAndLocate(plate)
             end
         end
     end
+end
+
+local function attemptStoreVehicle(garage)
+    local playerPed = PlayerPedId()
+    local curVeh = GetVehiclePedIsIn(playerPed, false)
+    if curVeh then
+        if GetPedInVehicleSeat(curVeh, -1) then
+            if GetEntitySpeed(curVeh) > 5 then
+                QBCore.Functions.Notify("You aren't sitting still")
+            else
+                local label = garage.label
+
+                for q,b in pairs(PhoneData.Garages) do
+                    for i,v in pairs(b) do
+                        -- print(i)
+                        -- print(v)
+                        -- print("--")
+                        if i == "label" and v == label then
+                            -- print("success")
+                            -- print(i)
+                            -- print(label)
+                            local garageToGo = b.putVehicle
+                            print(garageToGo)
+                            TriggerEvent('qb-customs:triggerGarageMonkey', garageToGo, q)
+                        end
+                        -- if v.blipName == blipName then
+                        --     print(blipName)
+                        -- end
+                    end
+                end
+            end
+        else
+            QBCore.Functions.Notify("You are not currently the driver")
+        end
+    else
+        QBCore.Functions.Notify("You are not in a vehicle")
+    end
+
+
+    
+
 end
 
 local function DisableDisplayControlActions()
@@ -300,6 +342,9 @@ local function OpenPhone()
             -- QBCore.Functions.TriggerCallback('qb-garage:server:GetPlayerVehicles', function(vehicles)
             QBCore.Functions.TriggerCallback('qb-phone:server:GetGarageVehicles', function(vehicles)
                 PhoneData.GarageVehicles = vehicles
+            end)
+            QBCore.Functions.TriggerCallback('qb-garage:server:GetGarages', function(garages)
+                PhoneData.Garages = garages
             end)
         else
             QBCore.Functions.Notify("You don't have a phone", "error")
@@ -516,6 +561,10 @@ end)
 
 RegisterNUICallback('SetupGarageVehicles', function(data, cb)
     cb(PhoneData.GarageVehicles)
+end)
+
+RegisterNUICallback('GetGarages', function(data, cb)
+    cb(PhoneData.Garages)
 end)
 
 RegisterNUICallback('RemoveMail', function(data, cb)
@@ -838,6 +887,11 @@ RegisterNUICallback('track-vehicle', function(data, cb)
     else
         QBCore.Functions.Notify("This vehicle cannot be located", "error")
     end
+end)
+
+RegisterNUICallback('store-vehicle', function(data, cb)
+    local gar = data.garage
+    attemptStoreVehicle(gar)
 end)
 
 RegisterNUICallback('DeleteContact', function(data, cb)

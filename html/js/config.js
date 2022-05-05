@@ -10,6 +10,7 @@ Config.HeaderDisabledApps = [
     "houses",
     "lawyers",
     "trucker",
+    "storage",
 ]
 
 Config.DefaultCryptoPage = "general";
