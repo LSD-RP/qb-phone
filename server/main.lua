@@ -12,8 +12,18 @@ local TWData = {}
 
 -- Functions
 
+function GetPlayerByPhone(number)
+    local source = nil
+    for k,v in pairs(QBCore.Players) do
+        if QBCore.Players[k].PlayerData.charinfo.phone == tonumber(number) then
+            source = k
+        end
+    end
+    return QBCore.Functions.GetPlayer(source)
+end
+
 local function GetOnlineStatus(number)
-    local Target = QBCore.Functions.GetPlayerByPhone(number)
+    local Target = GetPlayerByPhone(number)
     local retval = false
     if Target ~= nil then
         retval = true
@@ -127,7 +137,11 @@ end
 -- Callbacks
 
 QBCore.Functions.CreateCallback('qb-phone:server:GetCallState', function(_, cb, ContactData)
-    local Target = QBCore.Functions.GetPlayerByPhone(ContactData.number)
+    for k,v in pairs(QBCore.Players) do
+        if QBCore.Players[k].PlayerData.charinfo.phone == tonumber(ContactData.number) then
+            Target = QBCore.Functions.GetPlayer(k)
+        end
+    end
     if Target ~= nil then
         if Calls[Target.PlayerData.citizenid] ~= nil then
             if Calls[Target.PlayerData.citizenid].inCall then
@@ -811,7 +825,7 @@ end)
 RegisterNetEvent('qb-phone:server:CallContact', function(TargetData, CallId, AnonymousCall)
     local src = source
     local Ply = QBCore.Functions.GetPlayer(src)
-    local Target = QBCore.Functions.GetPlayerByPhone(TargetData.number)
+    local Target = GetPlayerByPhone(TargetData.number)
     if Target ~= nil then
         TriggerClientEvent('qb-phone:client:GetCalled', Target.PlayerData.source, Ply.PlayerData.charinfo.phone, CallId, AnonymousCall)
     end
@@ -1001,7 +1015,7 @@ RegisterNetEvent('qb-phone:server:AddRecentCall', function(type, data)
     local Minute = os.date("%M")
     local label = Hour .. ":" .. Minute
     TriggerClientEvent('qb-phone:client:AddRecentCall', src, data, label, type)
-    local Trgt = QBCore.Functions.GetPlayerByPhone(data.number)
+    local Trgt = GetPlayerByPhone(data.number)
     if Trgt ~= nil then
         TriggerClientEvent('qb-phone:client:AddRecentCall', Trgt.PlayerData.source, {
             name = Ply.PlayerData.charinfo.firstname .. " " .. Ply.PlayerData.charinfo.lastname,
@@ -1012,14 +1026,14 @@ RegisterNetEvent('qb-phone:server:AddRecentCall', function(type, data)
 end)
 
 RegisterNetEvent('qb-phone:server:CancelCall', function(ContactData)
-    local Ply = QBCore.Functions.GetPlayerByPhone(ContactData.TargetData.number)
+    local Ply = GetPlayerByPhone(ContactData.TargetData.number)
     if Ply ~= nil then
         TriggerClientEvent('qb-phone:client:CancelCall', Ply.PlayerData.source)
     end
 end)
 
 RegisterNetEvent('qb-phone:server:AnswerCall', function(CallData)
-    local Ply = QBCore.Functions.GetPlayerByPhone(CallData.TargetData.number)
+    local Ply = GetPlayerByPhone(CallData.TargetData.number)
     if Ply ~= nil then
         TriggerClientEvent('qb-phone:client:AnswerCall', Ply.PlayerData.source)
     end
