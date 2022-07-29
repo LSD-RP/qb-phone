@@ -170,7 +170,11 @@ local function attemptStoreVehicle(garage)
                             -- print(label)
                             local garageToGo = b.putVehicle
                             print(garageToGo)
-                            TriggerEvent('qb-customs:triggerGarageMonkey', garageToGo, q)
+                            if IsPedInAnyVehicle(playerPed) then
+                                TriggerEvent('qb-customs:triggerGarageMonkey', garageToGo, q)
+                            else
+                                QBCore.Functions.Notify("You are not in a vehicle")
+                            end
                         end
                         -- if v.blipName == blipName then
                         --     print(blipName)
