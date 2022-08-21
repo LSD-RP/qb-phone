@@ -22,8 +22,17 @@ function GetPlayerByPhone(number)
     return QBCore.Functions.GetPlayer(source)
 end
 
+-- local function GetOnlineStatus(number)
+--     local Target = GetPlayerByPhone(number)
+--     local retval = false
+--     if Target ~= nil then
+--         retval = true
+--     end
+--     return retval
+-- end
+
 local function GetOnlineStatus(number)
-    local Target = GetPlayerByPhone(number)
+    local Target = QBCore.Functions.GetPlayerByPhone(tonumber(number))
     local retval = false
     if Target ~= nil then
         retval = true
