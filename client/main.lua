@@ -161,24 +161,15 @@ local function attemptStoreVehicle(garage)
 
                 for q,b in pairs(PhoneData.Garages) do
                     for i,v in pairs(b) do
-                        -- print(i)
-                        -- print(v)
-                        -- print("--")
                         if i == "label" and v == label then
-                            -- print("success")
-                            -- print(i)
-                            -- print(label)
                             local garageToGo = b.putVehicle
-                            print(garageToGo)
+                            -- print(garageToGo)
                             if IsPedInAnyVehicle(playerPed) then
                                 TriggerEvent('qb-customs:triggerGarageMonkey', garageToGo, q)
                             else
                                 QBCore.Functions.Notify("You are not in a vehicle")
                             end
                         end
-                        -- if v.blipName == blipName then
-                        --     print(blipName)
-                        -- end
                     end
                 end
             end
@@ -424,7 +415,6 @@ local function CallContact(CallData, AnonymousCall)
     PhoneData.CallData.TargetData = CallData
     PhoneData.CallData.AnsweredCall = false
     PhoneData.CallData.CallId = GenerateCallId(PhoneData.PlayerData.charinfo.phone, CallData.number)
-    print("calling")
     TriggerServerEvent('qb-phone:server:CallContact', PhoneData.CallData.TargetData, PhoneData.CallData.CallId, AnonymousCall)
     TriggerServerEvent('qb-phone:server:SetCallState', true)
 
@@ -1178,7 +1168,6 @@ end)
 
 RegisterNUICallback('SellHouse', function(data, cb)
     local houseData = data.HouseData
-    -- print("try to sell")
     QBCore.Functions.TriggerCallback('qb-houses:server:sellHouse', function(success)
         cb(success)
     end, houseData)
@@ -1551,8 +1540,6 @@ end)
 
 -- RegisterNetEvent('qb-phone:client:UpdateTweetsDel', function(source, Tweets)
 --     PhoneData.Tweets = Tweets
---     print(source)
---     print(PhoneData.PlayerData.source)
 --     --local MyPlayerId = PhoneData.PlayerData.source
 --     --GetPlayerServerId(PlayerPedId())
 --     if source ~= MyPlayerId then
