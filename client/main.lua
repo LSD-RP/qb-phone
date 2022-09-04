@@ -54,6 +54,9 @@ end
 
 local function IsNumberInContacts(num)
     local retval = num
+    if type(num) == 'number' then
+        num = tostring(num)
+    end
     for _, v in pairs(PhoneData.Contacts) do
         if num == v.number then
             retval = v.name
@@ -1277,6 +1280,9 @@ RegisterNUICallback('GetWhatsappChats', function(_, cb)
 end)
 
 RegisterNUICallback('CallContact', function(data, cb)
+    if (type(data.ContactData.number) == 'string') then
+        data.ContactData.number = tonumber(data.ContactData.number)
+    end
     QBCore.Functions.TriggerCallback('qb-phone:server:GetCallState', function(CanCall, IsOnline, _)
         local status = {
             CanCall = CanCall,

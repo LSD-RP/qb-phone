@@ -63,7 +63,7 @@ QB.Phone.Functions.SetupRecentCalls = function(recentcalls) {
     recentcalls = recentcalls.reverse();
 
     $.each(recentcalls, function(i, recentCall){
-        var FirstLetter = (recentCall.name).charAt(0);
+        var FirstLetter = (recentCall.name).toString().charAt(0);
         var TypeIcon = 'fas fa-phone-slash';
         var IconStyle = "color: #e74c3c;";
         if (recentCall.type === "outgoing") {
